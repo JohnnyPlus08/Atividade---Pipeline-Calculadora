@@ -1,0 +1,23 @@
+{
+  "name": "atividade---pipeline-calculadora",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohnnyPlus08/Atividade---Pipeline-Calculadora.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JohnnyPlus08/Atividade---Pipeline-Calculadora/issues"
+  },
+  "homepage": "https://github.com/JohnnyPlus08/Atividade---Pipeline-Calculadora#readme",
+  "devDependencies": {
+    "jest": "^30.4.2"
+  }
+}
