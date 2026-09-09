@@ -11,7 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Compacta os arquivos de forma limpa
       - name: Gerar artefato ZIP
         run: zip -r ppipeline-demo.zip *
 
@@ -37,7 +36,6 @@ jobs:
         with:
           name: codigo-buildado
 
-      # Extração universal usando Python (Pedido do Professor)
       - name: Extrair artefato
         run: python -c "import zipfile; zipfile.ZipFile('ppipeline-demo.zip', 'r').extractall('.')"
 
@@ -180,7 +178,6 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    # Aqui ficam os nomes exatos de todos os jobs que precisam passar antes do deploy
     needs: [build, teste-soma, teste-subtracao, teste-multiplicacao, teste-divisao, teste-divisao-por-zero, teste-operacao-invalida]
     environment:
       name: Fatal Fury
