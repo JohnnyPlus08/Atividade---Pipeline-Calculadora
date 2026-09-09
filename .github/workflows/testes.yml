@@ -180,10 +180,10 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: [build, test_calculadora, test_divisao, test_divisao_por_zero, test_multiplicacao, test_operacao_invalida, test_soma, test_subtracao]
+    # Aqui ficam os nomes exatos de todos os jobs que precisam passar antes do deploy
+    needs: [build, teste-soma, teste-subtracao, teste-multiplicacao, teste-divisao, teste-divisao-por-zero, teste-operacao-invalida]
     environment:
       name: Fatal Fury
-    runs-on: ubuntu-latest
     steps:
-      -name: Confirmar deploy
-      run: echo "Deploy Realizado"
+      - name: Confirmar deploy
+        run: echo "Deploy Realizado"
