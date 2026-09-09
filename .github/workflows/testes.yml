@@ -11,12 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # O comando zip nativo funciona bem no Ubuntu do build
+      # Compacta os arquivos de forma limpa
       - name: Gerar artefato ZIP
-        run: zip -r ppipeline-demo.zip .
+        run: zip -r ppipeline-demo.zip *
 
       - name: Publicar artefato
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: codigo-buildado
           path: ppipeline-demo.zip
@@ -31,20 +31,20 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      
+
+      - name: Baixar artefato
+        uses: actions/download-artifact@v4
+        with:
+          name: codigo-buildado
+
+      # Extração universal usando Python (Pedido do Professor)
+      - name: Extrair artefato
+        run: python -c "import zipfile; zipfile.ZipFile('ppipeline-demo.zip', 'r').extractall('.')"
+
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
-
-      - name: Baixar artefato
-        uses: actions/download-artifact@v3
-        with:
-          name: codigo-buildado
-
-      # Extração universal usando Python para não quebrar no Windows do matrix
-      - name: Extrair artefato (Pedido do Professor)
-        run: python -c "import zipfile; zipfile.ZipFile('ppipeline-demo.zip', 'r').extractall('.')"
 
       - name: Instalar dependencias
         run: |
@@ -63,16 +63,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+      - name: Baixar artefato
+        uses: actions/download-artifact@v4
+        with:
+          name: codigo-buildado
+      - name: Extrair artefato
+        run: python -c "import zipfile; zipfile.ZipFile('ppipeline-demo.zip', 'r').extractall('.')"
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
-      - name: Baixar artefato
-        uses: actions/download-artifact@v3
-        with:
-          name: codigo-buildado
-      - name: Extrair artefato (Pedido do Professor)
-        run: python -c "import zipfile; zipfile.ZipFile('ppipeline-demo.zip', 'r').extractall('.')"
       - run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
@@ -88,16 +88,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+      - name: Baixar artefato
+        uses: actions/download-artifact@v4
+        with:
+          name: codigo-buildado
+      - name: Extrair artefato
+        run: python -c "import zipfile; zipfile.ZipFile('ppipeline-demo.zip', 'r').extractall('.')"
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
-      - name: Baixar artefato
-        uses: actions/download-artifact@v3
-        with:
-          name: codigo-buildado
-      - name: Extrair artefato (Pedido do Professor)
-        run: python -c "import zipfile; zipfile.ZipFile('ppipeline-demo.zip', 'r').extractall('.')"
       - run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
@@ -113,16 +113,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+      - name: Baixar artefato
+        uses: actions/download-artifact@v4
+        with:
+          name: codigo-buildado
+      - name: Extrair artefato
+        run: python -c "import zipfile; zipfile.ZipFile('ppipeline-demo.zip', 'r').extractall('.')"
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
-      - name: Baixar artefato
-        uses: actions/download-artifact@v3
-        with:
-          name: codigo-buildado
-      - name: Extrair artefato (Pedido do Professor)
-        run: python -c "import zipfile; zipfile.ZipFile('ppipeline-demo.zip', 'r').extractall('.')"
       - run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
@@ -138,16 +138,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+      - name: Baixar artefato
+        uses: actions/download-artifact@v4
+        with:
+          name: codigo-buildado
+      - name: Extrair artefato
+        run: python -c "import zipfile; zipfile.ZipFile('ppipeline-demo.zip', 'r').extractall('.')"
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
-      - name: Baixar artefato
-        uses: actions/download-artifact@v3
-        with:
-          name: codigo-buildado
-      - name: Extrair artefato (Pedido do Professor)
-        run: python -c "import zipfile; zipfile.ZipFile('ppipeline-demo.zip', 'r').extractall('.')"
       - run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
@@ -163,16 +163,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+      - name: Baixar artefato
+        uses: actions/download-artifact@v4
+        with:
+          name: codigo-buildado
+      - name: Extrair artefato
+        run: python -c "import zipfile; zipfile.ZipFile('ppipeline-demo.zip', 'r').extractall('.')"
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
-      - name: Baixar artefato
-        uses: actions/download-artifact@v3
-        with:
-          name: codigo-buildado
-      - name: Extrair artefato (Pedido do Professor)
-        run: python -c "import zipfile; zipfile.ZipFile('ppipeline-demo.zip', 'r').extractall('.')"
       - run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
