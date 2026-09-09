@@ -177,3 +177,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - run: pytest -v test_calculadora.py::test_operacao_invalida
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build, test_calculadora, test_divisao, test_divisao_por_zero, test_multiplicacao, test_operacao_invalida, test_soma, test_subtracao]
+    environment:
+      name: Fatal Fury
+    runs-on: ubuntu-latest
+    steps:
+      -name: Confirmar deploy
+      run: echo "Deploy Realizado"
